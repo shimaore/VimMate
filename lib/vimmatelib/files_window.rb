@@ -98,8 +98,22 @@ module VimMate
         end
       end
 
-      # Left-click: Select and Signal to open the menu
       @gtk_tree_view.signal_connect("button_press_event") do |widget, event|
+        # Left click
+        if event.kind_of? Gdk::EventButton and event.button == 1
+          path = @gtk_tree_view.get_path_at_pos(event.x, event.y)
+          @gtk_tree_view.selection.select_path(path[0]) if path
+
+          selected = @gtk_tree_view.selection.selected
+          if selected and File.file? selected[PATH]
+            @open_signal.each do |signal|
+              signal.call(selected[PATH],
+                          Config[:files_default_open_in_tabs] ? :tab_open : :open)
+            end
+          end
+        end
+
+        # Right-click: Select and Signal to open the menu
         if event.kind_of? Gdk::EventButton and event.button == 3
           path = @gtk_tree_view.get_path_at_pos(event.x, event.y)
           @gtk_tree_view.selection.select_path(path[0]) if path
@@ -125,7 +139,7 @@ module VimMate
         gtk_label.text = File.join(File.dirname(selected_row[PATH]), selected_row[NAME])
       end
       
-      # Same thing as Left-click, but with the keyboard
+      # Same thing as Right-click, but with the keyboard
       @gtk_tree_view.signal_connect("popup_menu") do
         selected = @gtk_tree_view.selection.selected
         if selected
