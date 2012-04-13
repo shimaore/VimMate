@@ -111,6 +111,13 @@ module VimMate
                           Config[:files_default_open_in_tabs] ? :tab_open : :open)
             end
           end
+          if selected and File.directory? selected[PATH]
+            if @gtk_tree_view.row_expanded? selected.path
+              @gtk_tree_view.collapse_row selected.path
+            else
+              @gtk_tree_view.expand_row selected.path, false
+            end
+          end
         end
 
         # Right-click: Select and Signal to open the menu
