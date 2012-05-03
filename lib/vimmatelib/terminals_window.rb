@@ -151,7 +151,7 @@ module VimMate
        rescue LoadError
        end
        shell = (ENV["SHELL"] || Etc.getpwnam(Etc.getlogin).shell rescue nil || "/bin/sh") 
-       gtk_terminal.pid = gtk_terminal.fork_command(shell, ["-l"])
+       gtk_terminal.pid = gtk_terminal.fork_command({:argv=>[shell,"-l"]})
       else
         gtk_terminal.pid = gtk_terminal.fork_command
       end
