@@ -38,7 +38,7 @@ module VimMate
       gtk_window.signal_connect("delete_event") do
         Gtk.main_quit
       end
-      gtk_window.title = Config[:window_title]
+      gtk_window.title = Config[:window_title] + ' - ' + File.expand_path('.')
       gtk_window.set_default_size(Config[:window_width],
                                   Config[:window_height])
       gtk_window.set_icon_list(Icons.window_icons)
