@@ -212,7 +212,7 @@ module VimMate
       end
       @gtk_file_filter_entry.signal_connect("changed", &changed_lambda)
       gtk_filter_button.signal_connect("toggled", &changed_lambda)
-      gtk_filter_button.active = Config[:files_filter_active]
+      # gtk_filter_button.active = Config[:files_filter_active]
       gtk_filter_box.spacing = 10
       gtk_filter_box.border_width = 10
 
