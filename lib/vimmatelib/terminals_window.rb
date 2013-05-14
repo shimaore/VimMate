@@ -26,6 +26,8 @@ require 'set'
 require 'vte'
 require 'vimmatelib/config'
 
+# See http://ruby-gnome2.sourceforge.jp/hiki.cgi?Vte%3A%3ATerminal for more info.
+
 module VimMate
 
   # Do not load the terminals if they are disabled
