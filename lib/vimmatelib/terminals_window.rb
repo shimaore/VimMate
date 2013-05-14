@@ -120,6 +120,7 @@ module VimMate
       gtk_terminal.audible_bell = Config[:terminals_audible_bell]
       gtk_terminal.visible_bell = Config[:terminals_visible_bell]
       gtk_terminal.set_font(Config[:terminals_font])
+      gtk_terminal.set_scrollback_lines(Config[:scrollback_lines])
       forecolor = Gdk::Color.parse(Config[:terminals_foreground_color])
       backcolor = Gdk::Color.parse(Config[:terminals_background_color])
       gtk_terminal.set_colors(forecolor, backcolor, [])

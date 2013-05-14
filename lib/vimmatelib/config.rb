@@ -63,6 +63,7 @@ module VimMate
       :terminals_visible_bell => false,
       :terminals_autoexec => "",
       :terminals_login_shell => false,
+      :scrollback_lines => 9999,
       :subversion_enabled => true,
     }.freeze
 
