@@ -21,8 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 =end
 
-require 'rake/gempackagetask'
-require 'rake/rdoctask'
+# require 'rake/gempackagetask'
+require 'rubygems/package_task'
+# require 'rake/rdoctask'
+require 'rdoc/task'
 
 require './lib/vimmatelib/version.rb'
 
@@ -61,10 +63,12 @@ gem_specification = Gem::Specification.new do |s|
 end
 
 # Gem Task
+=begin
 Rake::GemPackageTask.new(gem_specification) do |pkg|
   pkg.need_zip = false
   pkg.need_tar = true
 end
+=end
 task :package => [:rdoc]
 
 desc 'Remove rdoc and package'
